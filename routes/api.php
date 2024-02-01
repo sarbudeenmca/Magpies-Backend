@@ -19,11 +19,9 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::post('/auth/login', [LoginController::class, 'login']);
-
-
+Route::get('leads', [LeadsController::class, 'index']);
 Route::middleware(['auth:sanctum'])->group(function () {
     Route::post('/', [DashboardController::class, 'index']);
-    Route::post('/leads', [LeadsController::class, 'index']);
     Route::post('/deals', [DealsController::class, 'index']);
     Route::post('/logout', [LoginController::class, 'logout']);
 });
