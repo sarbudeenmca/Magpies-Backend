@@ -26,26 +26,26 @@ class LeadsController extends Controller {
         }
     }
 
-    public function create(Request $request) {
+    public function insert(Request $request) {
         $validator = Validator::make(
             $request->all(),
             [
                 'lead_name' => 'required|string|max:191',
                 'company_name' => 'required|string|max:191',
-                'phone_number' => 'required|digits|max:14',
-                'mobile_number' => 'required|digits|max:14',
+                'phone_number' => 'required|digits:10',
+                'mobile_number' => 'required|digits:10',
                 'email_address' => 'required|email|max:191',
                 'city' => 'required|string|max:191',
                 'country' => 'required|string|max:191',
                 'lead_status' => 'required|string|max:191',
-                'descritpion' => 'required|string|max:1500'
+                'description' => 'required|string|max:1500'
             ]
         );
 
         if ($validator->fails()) {
             return response()->json([
                 'status' => 201,
-                'errors' => $validator->message()
+                'errors' => $validator->messages()
             ], 422);
         } else {
             $leads = Lead::create([
