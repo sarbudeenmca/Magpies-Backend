@@ -38,6 +38,7 @@ class LeadsController extends Controller {
                 'city' => 'required|string|max:191',
                 'country' => 'required|string|max:191',
                 'lead_status' => 'required|string|max:191',
+                'lead_source' => 'required|string|max:191',
                 'description' => 'required|string|max:1500'
             ]
         );
@@ -57,6 +58,7 @@ class LeadsController extends Controller {
                 'city' => $request->city,
                 'country' => $request->country,
                 'lead_status' => $request->lead_status,
+                'lead_source' => $request->lead_source,
                 'description' => $request->description,
             ]);
 

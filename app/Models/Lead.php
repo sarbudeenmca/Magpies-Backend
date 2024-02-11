@@ -17,6 +17,7 @@ class Lead extends Model {
         'city',
         'country',
         'lead_status',
+        'lead_source',
         'description'
     ];
 }
