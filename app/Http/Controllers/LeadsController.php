@@ -7,9 +7,11 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 
 class LeadsController extends Controller {
-    public function index() {
+    public function index(Request $request) {
 
-        $leads = Lead::all();
+        $limit = $request->input('limit', 5);
+
+        $leads = Lead::limit($limit)->get();
 
         if ($leads->count() > 0) {
             $data = [
