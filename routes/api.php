@@ -21,6 +21,7 @@ use Illuminate\Support\Facades\Route;
 Route::post('/auth/login', [LoginController::class, 'login']);
 
 Route::get('/leads', [LeadsController::class, 'index']);
+Route::get('/leadnames', [LeadsController::class, 'getLeadNames']);
 Route::post('/leads', [LeadsController::class, 'insert']);
 
 Route::middleware(['auth:sanctum'])->group(function () {

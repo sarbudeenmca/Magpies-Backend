@@ -28,6 +28,25 @@ class LeadsController extends Controller {
         }
     }
 
+    public function getLeadNames() {
+
+        $leadNames = Lead::limit(100)->pluck('lead_name');
+
+        if ($leadNames->count() > 0) {
+            $data = [
+                'status' => 200,
+                'leadNames' => $leadNames,
+            ];
+            return response()->json($data, 200);
+        } else {
+            $data = [
+                'status' => 404,
+                'message' => 'No records found!',
+            ];
+            return response()->json($data, 404);
+        }
+    }
+
     public function insert(Request $request) {
         $validator = Validator::make(
             $request->all(),
