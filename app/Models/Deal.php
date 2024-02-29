@@ -13,6 +13,7 @@ class Deal extends Model {
         'service_type',
         'estimated_price',
         'follow_up',
-        'status'
+        'status',
+        'kick_off_date'
     ];
 }
