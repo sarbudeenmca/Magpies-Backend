@@ -12,6 +12,7 @@ class Deal extends Model {
         'lead_id',
         'service_type',
         'estimated_price',
-        'follow_up'
+        'follow_up',
+        'status'
     ];
 }
