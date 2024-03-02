@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Validator;
 
 class LoginController extends Controller {
@@ -53,14 +54,18 @@ class LoginController extends Controller {
         try {
             // Revoke the user's personal access token
             $request->user()->tokens()->delete();
+
             return response()->json([
                 'status' => true,
                 'message' => 'User logged out successfully',
             ], 200);
-        } catch (\Throwable $th) {
+        } catch (\Throwable $e) {
+            // Log the exception for debugging purposes
+            Log::error('Error during logout: ' . $e->getMessage() . PHP_EOL . $e->getTraceAsString());
+
             return response()->json([
                 'status' => false,
-                'message' => $th->getMessage(),
+                'message' => 'Failed to logout. Please try again later.',
             ], 500);
         }
     }
