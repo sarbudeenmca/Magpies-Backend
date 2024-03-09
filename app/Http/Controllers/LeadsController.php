@@ -28,11 +28,13 @@ class LeadsController extends Controller {
         }
     }
 
-    public function getLeadNames() {
+    public function getLeadNames(Request $request) {
 
-        $leadNames = Lead::limit(100)->pluck('lead_name');
+        $query = $request->input('keyword');
 
-        if ($leadNames->count() > 0) {
+        $leadNames = Lead::where('lead_name', 'like', "%$query%")->select('id', 'lead_name')->limit(10)->get();
+
+        if (!empty($leadNames)) {
             $data = [
                 'status' => 200,
                 'leadNames' => $leadNames,

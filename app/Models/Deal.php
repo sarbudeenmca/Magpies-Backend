@@ -7,9 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Deal extends Model {
 
-    // public function lead() {
-    //     return $this->belongsTo(Lead::class, 'lead_id'); // Specify the foreign key column
-    // }
+    public function lead() {
+        return $this->belongsTo(Lead::class);
+    }
 
     use HasFactory;
     protected $table = 'deals';

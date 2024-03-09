@@ -6,6 +6,11 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Lead extends Model {
+
+    public function lead() {
+        return $this->hasMany(Deal::class);
+    }
+
     use HasFactory;
     protected $table = 'leads';
     protected $fillable = [
